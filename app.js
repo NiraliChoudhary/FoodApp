@@ -13,13 +13,6 @@ app.listen(port,function(){
 });
 app.use(cookieParser());
 
-app.get('/*', function(req, res) {
-    res.sendFile('index.html', { root: path.join(__dirname, '/public/build') }, function(err) {
-      if (err) {
-        res.status(500).send(err)
-      }
-    })
-  })
 //mini app
 const userRouter = require('./Routers/userRouter');
 const planRouter = require('./Routers/planRouter');
@@ -31,6 +24,14 @@ app.use("/plans", planRouter);
 app.use("/review", reviewRouter);
 app.use('/booking',bookingRouter);
 // app.use("/auth", authRouter);
+
+app.get('/*', function(req, res) {
+    res.sendFile('index.html', { root: path.join(__dirname, '/public/build') }, function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
 
 
 
